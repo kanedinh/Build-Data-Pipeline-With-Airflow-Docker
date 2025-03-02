@@ -4,3 +4,10 @@ logs
 plugins/__pycache__
 
 # .env
+
+images/AirflowLogo.png
+images/docker.png
+images/pandas.png
+images/pg.png
+images/python.png
+images/website.png
