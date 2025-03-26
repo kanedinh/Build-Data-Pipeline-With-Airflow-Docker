@@ -1,7 +1,7 @@
 import pandas as pd
 from postgres_operator import PostgresOperators
 
-def format_to_parquet(src_file):
+def format_to_parquet(src_file: str) -> str:
     if not src_file.endswith('.csv'):
         raise ValueError('Only CSV files are supported')
     else:
@@ -11,7 +11,7 @@ def format_to_parquet(src_file):
         print('File converted from csv to parquet successfully!')
         return parquet_file
 
-def ingest_data_to_postgres(parquet_file, conn_id, table_name):
+def ingest_data_to_postgres(parquet_file: str, conn_id: str, table_name: str) -> None:
     if not parquet_file.endswith('.parquet'):
         parquet_file = format_to_parquet(parquet_file)
 
@@ -20,11 +20,11 @@ def ingest_data_to_postgres(parquet_file, conn_id, table_name):
     print("Connecting to PostgreSQL successfully!")
 
     # Create schema staging and warehouse
-    query = """
+    query: str = """
     CREATE SCHEMA IF NOT EXISTS staging;
     """
     postgres_operator.execute_sql(query)
-    query = """
+    query: str = """
     CREATE SCHEMA IF NOT EXISTS warehouse;
     """
     postgres_operator.execute_sql(query)

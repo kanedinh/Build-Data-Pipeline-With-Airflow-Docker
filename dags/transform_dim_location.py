@@ -1,12 +1,12 @@
 from postgres_operator import PostgresOperators
 import pandas as pd
 
-def transform_dim_location(table_name, conn_id):
+def transform_dim_location(table_name: str, conn_id: str) -> None:
     staging_operator = PostgresOperators(conn_id=conn_id)
     warehouse_operator = PostgresOperators(conn_id=conn_id)
 
     # Read data from staging to df
-    query = f"""
+    query: str = f"""
     SELECT * FROM staging.{table_name}
     """
     df = staging_operator.get_data_to_df(query)

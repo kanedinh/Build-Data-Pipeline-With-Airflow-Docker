@@ -1,18 +1,18 @@
 from postgres_operator import PostgresOperators
 import pandas as pd
 
-def transform_fact_yellow_taxi(table_name, conn_id):
+def transform_fact_yellow_taxi(table_name: str, conn_id: str) -> None:
     staging_operator = PostgresOperators(conn_id=conn_id)
     warehouse_operator = PostgresOperators(conn_id=conn_id)
 
     # Get data from database
-    query = f"""
+    query: str = f"""
     SELECT * FROM staging."{table_name}"
     """
     df = staging_operator.get_data_to_df(query)
 
     # Check the existence of table
-    check_query = """
+    check_query: str = """
     SELECT EXISTS (
         SELECT FROM information_schema.tables 
         WHERE table_schema = 'warehouse' 
@@ -23,7 +23,7 @@ def transform_fact_yellow_taxi(table_name, conn_id):
 
     # Get lastest TripID
     if table_exists:
-        query = """
+        query: str = """
         SELECT MAX("TripID") FROM warehouse."Fact_Yellow_taxi"
         """
         last_trip_id = warehouse_operator.get_data_to_df(query).iloc[0, 0]

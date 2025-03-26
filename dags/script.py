@@ -14,16 +14,16 @@ from transform_dim_payment_type import transform_dim_payment_type
 from transform_fact_yellow_taxi import transform_fact_yellow_taxi
 
 # 'conn_id' connect to postgreSQL
-conn_id = 'postgres_local'
+conn_id: str = 'postgres_local'
 
-url_prefix = "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_"
-url_yellow_taxi = url_prefix + "{{ execution_date.strftime(\'%Y-%m\') }}.parquet"
-yellow_taxi_file = "/opt/airflow/" + "yellow_taxi_{{ execution_date.strftime(\'%Y-%m\') }}.parquet"
-yellow_taxi_table_name = "yellow_taxi_{{ execution_date.strftime(\'%Y-%m\') }}"
+url_prefix: str = "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_"
+url_yellow_taxi: str = url_prefix + "{{ execution_date.strftime(\'%Y-%m\') }}.parquet"
+yellow_taxi_file: str = "/opt/airflow/" + "yellow_taxi_{{ execution_date.strftime(\'%Y-%m\') }}.parquet"
+yellow_taxi_table_name: str = "yellow_taxi_{{ execution_date.strftime(\'%Y-%m\') }}"
 
-url_location = "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
-location_file = "/opt/airflow/taxi_zone_lookup.csv"
-location_table_name = "taxi_zone_lookup"
+url_location: str = "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
+location_file: str = "/opt/airflow/taxi_zone_lookup.csv"
+location_table_name: str = "taxi_zone_lookup"
 
 default_args = {
     'owner': 'airflow',

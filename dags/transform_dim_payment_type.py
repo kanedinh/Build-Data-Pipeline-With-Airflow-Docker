@@ -1,7 +1,7 @@
 from postgres_operator import PostgresOperators
 import pandas as pd
 
-def transform_dim_payment_type(conn_id):
+def transform_dim_payment_type(conn_id: str) -> None:
     warehouse_operator = PostgresOperators(conn_id=conn_id)
 
     # Create data
