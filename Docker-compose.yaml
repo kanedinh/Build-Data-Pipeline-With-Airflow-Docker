@@ -237,8 +237,19 @@ services:
           echo
         fi
         mkdir -p /sources/logs /sources/dags /sources/plugins
-        chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
+        chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}        
+        
+        airflow connections add 'postgres_local' \
+          --conn-type 'postgres' \
+          --conn-host "${POSTGRES_HOST}" \
+          --conn-login "${POSTGRES_USER}" \
+          --conn-password "${POSTGRES_PASSWORD}" \
+          --conn-schema "${POSTGRES_DB}" \
+          --conn-port "${POSTGRES_PORT}" \
+
         exec /entrypoint airflow version
+
+    # Add connection Postgres_local 
     # yamllint enable rule:line-length
     environment:
       <<: *airflow-common-env
@@ -298,12 +309,12 @@ services:
     volumes:
       - ny_yellow_taxi_data:/var/lib/postgresql/data:rw
     networks:
-      - airflow  
+      - data  
 
 networks:
-  airflow:
-    external:
-      name: datapipelinewithairflow_default # name of the network created by docker-compose: example: <folder_name>_default
+  data:
+    driver: bridge
+    name: data
 
 volumes:
   postgres-db-volume:
