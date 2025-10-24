@@ -2,7 +2,7 @@
 
 ![Data Pipeline Diagram](./images/datapipeline.jpg)
 
-🚀 In this repo, I will get familiar with a data pipeline using ETL. Knowing how to build a Data Warehouse.
+🚀 In this project, I build a data pipeline using ETL.
 
 Key languages and data platforms of the repo:
 
