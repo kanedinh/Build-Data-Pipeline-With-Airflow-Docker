@@ -48,7 +48,9 @@ Build-Data-Pipeline-With-Airflow-Docker
 ### Data
 
 🚀 About dataset:
+
 ![Data Dictionary](./images/data_dictionary.jpg)
 
 🚀 Data warehouse Diagram:
+
 ![Data Warehouse](./images/diagram.jpg)
